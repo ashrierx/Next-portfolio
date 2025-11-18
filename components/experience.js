@@ -32,7 +32,7 @@ export default function Projects() {
         >
           <div className="experience-link">
             <a
-              href="https://drive.proton.me/urls/S0YT4FK20M#5nhvMNX92aBy"
+              href="https://drive.proton.me/urls/2MWZJ3ZCAR#cVreCZAADmVa"
               target="_blank"
               className="experience-link"
             >
@@ -50,7 +50,7 @@ export default function Projects() {
         <VerticalTimelineElement
           className="vertical-timeline-element--work"
           contentArrowStyle={{ borderRight: "7px solid black" }}
-          date="10/2023 - 08/2024"
+          date="09/2023 - 08/2024"
           iconStyle={{ color: "#fff" }}
           icon={
             <Image
@@ -64,15 +64,15 @@ export default function Projects() {
         >
           <div className="experience-link">
             <a
-              href="https://drive.proton.me/urls/S0YT4FK20M#5nhvMNX92aBy"
+              href="https://drive.proton.me/urls/2MWZJ3ZCAR#cVreCZAADmVa"
               target="_blank"
               className="experience-link"
             >
               <h3 className="vertical-timeline-element-title mb-2">
-                Web Developer
+                Web Developer (contract)
               </h3>
               <h5 className="vertical-timeline-element-subtitle">
-                CommerceTools, Inc
+                commercetools, Inc
               </h5>
             </a>
           </div>
@@ -96,12 +96,12 @@ export default function Projects() {
         >
           <div className="experience-link">
             <a
-              href="https://drive.proton.me/urls/S0YT4FK20M#5nhvMNX92aBy"
+              href="https://drive.proton.me/urls/2MWZJ3ZCAR#cVreCZAADmVa"
               target="_blank"
               className="experience-link"
             >
               <h3 className="vertical-timeline-element-title mb-2">
-                Frontend Developer
+                Frontend Developer (contract)
               </h3>
               <h5 className="vertical-timeline-element-subtitle">
                 Lampros Labs
@@ -128,7 +128,7 @@ export default function Projects() {
         >
           <div className="experience-link">
             <a
-              href="https://drive.proton.me/urls/S0YT4FK20M#5nhvMNX92aBy"
+              href="https://drive.proton.me/urls/2MWZJ3ZCAR#cVreCZAADmVa"
               target="_blank"
               className="experience-link"
             >
@@ -141,7 +141,7 @@ export default function Projects() {
           <p>Full Stack Web Development Cirriculum</p>
         </VerticalTimelineElement>
 
-        <VerticalTimelineElement
+        {/* <VerticalTimelineElement
           className="vertical-timeline-element--work"
           contentArrowStyle={{ borderRight: "7px solid black" }}
           date="08/2021 - 05/2022"
@@ -158,7 +158,7 @@ export default function Projects() {
         >
           <div className="experience-link">
             <a
-              href="https://drive.proton.me/urls/S0YT4FK20M#5nhvMNX92aBy"
+              href="https://drive.proton.me/urls/2MWZJ3ZCAR#cVreCZAADmVa"
               target="_blank"
               className="experience-link"
             >
@@ -169,9 +169,9 @@ export default function Projects() {
             </a>
           </div>
           <p>Web Design and Computer Animation</p>
-        </VerticalTimelineElement>
+        </VerticalTimelineElement> */}
 
-        <VerticalTimelineElement
+        {/* <VerticalTimelineElement
           className="vertical-timeline-element--work"
           contentArrowStyle={{ borderRight: "7px solid black" }}
           date="12/2020 - 04/2021"
@@ -188,7 +188,7 @@ export default function Projects() {
         >
           <div className="experience-link">
             <a
-              href="https://drive.proton.me/urls/S0YT4FK20M#5nhvMNX92aBy"
+              href="https://drive.proton.me/urls/2MWZJ3ZCAR#cVreCZAADmVa"
               target="_blank"
               className="experience-link"
             >
@@ -201,6 +201,38 @@ export default function Projects() {
             </a>
           </div>
           <p>User Experience, Visual Design</p>
+        </VerticalTimelineElement> */}
+
+        <VerticalTimelineElement
+          className="vertical-timeline-element--education"
+          contentArrowStyle={{ borderRight: "7px solid black" }}
+          date="12/2020 - 05/2022"
+          iconStyle={{ color: "#fff" }}
+          icon={
+            <Image
+              src={computer}
+              width={40}
+              height={40}
+              className="experience-icon"
+              alt="computer graphic"
+            />
+          }
+        >
+          <div className="experience-link">
+            <a
+              href="https://drive.proton.me/urls/2MWZJ3ZCAR#cVreCZAADmVa"
+              target="_blank"
+              className="experience-link"
+            >
+              <h3 className="vertical-timeline-element-title mb-2">
+                Junior Web Developer
+              </h3>
+              <h5 className="vertical-timeline-element-subtitle">
+                First Turn Media
+              </h5>
+            </a>
+          </div>
+          <p>Custom React site</p>
         </VerticalTimelineElement>
 
         <VerticalTimelineElement
@@ -220,7 +252,7 @@ export default function Projects() {
         >
           <div className="experience-link">
             <a
-              href="https://drive.proton.me/urls/S0YT4FK20M#5nhvMNX92aBy"
+              href="https://drive.proton.me/urls/2MWZJ3ZCAR#cVreCZAADmVa"
               target="_blank"
               className="experience-link"
             >
@@ -233,38 +265,6 @@ export default function Projects() {
             </a>
           </div>
           <p>Instructional Staff</p>
-        </VerticalTimelineElement>
-
-        <VerticalTimelineElement
-          className="vertical-timeline-element--education"
-          contentArrowStyle={{ borderRight: "7px solid black" }}
-          date="11/2019 - 12/2020"
-          iconStyle={{ color: "#fff" }}
-          icon={
-            <Image
-              src={computer}
-              width={40}
-              height={40}
-              className="experience-icon"
-              alt="computer graphic"
-            />
-          }
-        >
-          <div className="experience-link">
-            <a
-              href="https://drive.proton.me/urls/S0YT4FK20M#5nhvMNX92aBy"
-              target="_blank"
-              className="experience-link"
-            >
-              <h3 className="vertical-timeline-element-title mb-2">
-                Junior Web Developer
-              </h3>
-              <h5 className="vertical-timeline-element-subtitle">
-                First Turn Media
-              </h5>
-            </a>
-          </div>
-          <p>Custom React site</p>
         </VerticalTimelineElement>
       </VerticalTimeline>
     </section>
