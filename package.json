@@ -26,6 +26,6 @@
     "typewriter-effect": "^2.19.0"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^5.15.1"
+    "@netlify/plugin-nextjs": "^4.41.3"
   }
 }
