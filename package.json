@@ -24,5 +24,8 @@
     "react-scroll": "^1.8.9",
     "react-vertical-timeline-component": "^3.6.0",
     "typewriter-effect": "^2.19.0"
+  },
+  "devDependencies": {
+    "@netlify/plugin-nextjs": "^5.15.1"
   }
 }
