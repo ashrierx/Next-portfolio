@@ -15,6 +15,8 @@ export default function Projects() {
       </div>
       <div class="clip-path-about"></div>
       <VerticalTimeline id="experiencesDiv">
+
+        {/* VIEW SYSTEMS */}
         <VerticalTimelineElement
           className="vertical-timeline-element--work"
           contentArrowStyle={{ borderRight: "7px solid black" }}
@@ -32,7 +34,7 @@ export default function Projects() {
         >
           <div className="experience-link">
             <a
-              href="https://drive.proton.me/urls/2MWZJ3ZCAR#cVreCZAADmVa"
+              href="https://drive.proton.me/urls/V87WXC8JHM#a4YsNngqQQM9"
               target="_blank"
               className="experience-link"
             >
@@ -47,6 +49,7 @@ export default function Projects() {
           <p>Engineering, Front End Development</p>
         </VerticalTimelineElement>
 
+        {/* COMMERCE TOOLS */}
         <VerticalTimelineElement
           className="vertical-timeline-element--work"
           contentArrowStyle={{ borderRight: "7px solid black" }}
@@ -64,7 +67,7 @@ export default function Projects() {
         >
           <div className="experience-link">
             <a
-              href="https://drive.proton.me/urls/2MWZJ3ZCAR#cVreCZAADmVa"
+              href="https://drive.proton.me/urls/V87WXC8JHM#a4YsNngqQQM9"
               target="_blank"
               className="experience-link"
             >
@@ -79,6 +82,7 @@ export default function Projects() {
           <p>Systems, Web Development</p>
         </VerticalTimelineElement>
 
+        {/* LAMPROS LABS */}
         <VerticalTimelineElement
           className="vertical-timeline-element--work"
           contentArrowStyle={{ borderRight: "7px solid black" }}
@@ -96,7 +100,7 @@ export default function Projects() {
         >
           <div className="experience-link">
             <a
-              href="https://drive.proton.me/urls/2MWZJ3ZCAR#cVreCZAADmVa"
+              href="https://drive.proton.me/urls/V87WXC8JHM#a4YsNngqQQM9"
               target="_blank"
               className="experience-link"
             >
@@ -111,6 +115,7 @@ export default function Projects() {
           <p>User Experience, Web Development</p>
         </VerticalTimelineElement>
 
+        {/* EDX TEACHING ASSISTANT */}
         <VerticalTimelineElement
           className="vertical-timeline-element--work"
           contentArrowStyle={{ borderRight: "7px solid black" }}
@@ -128,7 +133,7 @@ export default function Projects() {
         >
           <div className="experience-link">
             <a
-              href="https://drive.proton.me/urls/2MWZJ3ZCAR#cVreCZAADmVa"
+              href="https://drive.proton.me/urls/V87WXC8JHM#a4YsNngqQQM9"
               target="_blank"
               className="experience-link"
             >
@@ -158,7 +163,7 @@ export default function Projects() {
         >
           <div className="experience-link">
             <a
-              href="https://drive.proton.me/urls/2MWZJ3ZCAR#cVreCZAADmVa"
+              href="https://drive.proton.me/urls/V87WXC8JHM#a4YsNngqQQM9"
               target="_blank"
               className="experience-link"
             >
@@ -188,7 +193,7 @@ export default function Projects() {
         >
           <div className="experience-link">
             <a
-              href="https://drive.proton.me/urls/2MWZJ3ZCAR#cVreCZAADmVa"
+              href="https://drive.proton.me/urls/V87WXC8JHM#a4YsNngqQQM9"
               target="_blank"
               className="experience-link"
             >
@@ -203,6 +208,7 @@ export default function Projects() {
           <p>User Experience, Visual Design</p>
         </VerticalTimelineElement> */}
 
+        {/* FIRST TURN MEDIA */}
         <VerticalTimelineElement
           className="vertical-timeline-element--education"
           contentArrowStyle={{ borderRight: "7px solid black" }}
@@ -220,7 +226,7 @@ export default function Projects() {
         >
           <div className="experience-link">
             <a
-              href="https://drive.proton.me/urls/2MWZJ3ZCAR#cVreCZAADmVa"
+              href="https://drive.proton.me/urls/V87WXC8JHM#a4YsNngqQQM9"
               target="_blank"
               className="experience-link"
             >
@@ -235,6 +241,7 @@ export default function Projects() {
           <p>Custom React site</p>
         </VerticalTimelineElement>
 
+        {/* CODEWIZARDS */}
         <VerticalTimelineElement
           className="vertical-timeline-element--education"
           contentArrowStyle={{ borderRight: "7px solid black" }}
@@ -252,7 +259,7 @@ export default function Projects() {
         >
           <div className="experience-link">
             <a
-              href="https://drive.proton.me/urls/2MWZJ3ZCAR#cVreCZAADmVa"
+              href="https://drive.proton.me/urls/V87WXC8JHM#a4YsNngqQQM9"
               target="_blank"
               className="experience-link"
             >

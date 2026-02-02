@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --primary-dark: #3d2f5a;
   --primary-light: rgb(254, 250, 255);
@@ -433,12 +437,11 @@ input:focus-visible {
   left: calc(50% - 20px);
 }
 
-#experience {
-  /* background-color: #82a9b83d; */
+/* #experience {
   background-color: white;
   padding-bottom: 50px;
   position: relative;
-}
+} */
 
 .experience-icon {
   border-radius: 50%;

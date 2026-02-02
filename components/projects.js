@@ -5,7 +5,8 @@ import { useEffect } from "react";
 import Lampros from "../images/ocusell.png";
 import Vantage from "../images/vantageps.jpg";
 import Localeyz from "../images/local.png";
-import Shadow from "../images/shadowbud.png";
+import Barter from "../images/barter.jpg";
+import DreamMotions from "../images/dreammotions.png";
 import Loslens from "../images/loslens.png";
 import Commercetools from "../images/commercetools.png";
 import View from "../images/view.png";
@@ -83,31 +84,51 @@ export default function About() {
       company: "Localeyz",
       tech: ["React", "GraphQL", "Tailwind"],
       description: `Architected high-performance, SEO-optimized web applications using the JAMstack approach with React, Gatsby, and GraphQL. Implemented sophisticated data fetching strategies that improved page load speeds. Provided expert-level technical consultation for enterprise Drupal implementations, developing comprehensive documentation and training materials that empowered client teams. Championed modern development practices including atomic design principles and component-driven development.`,
+      link: {
+        label: "View the site",
+        url: "https://localeyz.io/",
+      },
     },
     {
       id: "shadow",
-      name: "Shadow Buddy",
-      image: Shadow,
-      company: "Shadow Buddy",
-      tech: ["React", "Adobe XD", "Tailwind"],
-      description: `Conceptualized and developed a innovative personal project showcasing end-to-end product development capabilities. Created comprehensive UI/UX designs in Adobe XD, focusing on accessibility and user-centered design principles. Implemented the application using React and Tailwind CSS, demonstrating proficiency in modern frontend architecture patterns and responsive design. This passion project exemplifies attention to detail and commitment to crafting exceptional digital experiences.`,
+      name: "Barter Builds",
+      image: Barter,
+      company: "Barter Builds",
+      tech: ["React", "Tailwind", "Typescript", "Next.js", "Postgres", "Framer Motion"],
+      description: `Barter Builds is a community-driven platform where development work is traded for local business services. This project served as a case study in "vibe coding", leveraging AI to accelerate the development lifecycle from schema design to final UI polish`,
       link: {
-        label: "View the complete design system",
-        url: "https://xd.adobe.com/view/b9fe1da9-45f2-4499-a76d-b056ab49cf18-ecad/",
+        label: "View the completed project",
+        url: "https://barterbuilds.com/",
       },
     },
     {
-      id: "loslens",
-      name: "Lo's Lens",
-      image: Loslens,
-      company: "Lo's Lens",
-      tech: ["WordPress"],
-      description: `Designed and developed a premium WordPress portfolio for a professional pet photography business, focusing on visual storytelling and conversion optimization. Implemented a custom gallery system that showcases high-resolution imagery while maintaining optimal performance across all devices. Integrated advanced SEO strategies and user-friendly content management capabilities. Provided comprehensive client training and ongoing support, ensuring sustainable business growth through effective digital presence.`,
+      id: "dream",
+      name: "DreamMotions",
+      image: DreamMotions,
+      company: "DreamMotions",
+      tech: ["React", "Tailwind", "Typescript", "Vite", "Vercel", "OpenAI API", "Firebase", "Framer Motion"],
+      description: `An AI-powered dream analysis web app. 
+
+Powered by the OpenAI API and a carefully crafted prompt, DreamMotions breaks your dreams into Primary Emotions, Symbolic Interpretation, Psychological Insights, Archetypal Themes, and Practical Takeaways.
+
+You can change the app theme based on your current mood, explore an analytics dashboard to uncover recurring emotions and symbols, and keep track of past dreams for personal reflection.`,
       link: {
-        label: "Visit the live site",
-        url: "https://www.loslens.com",
+        label: "View the site",
+        url: "https://dreammotions.vercel.app/",
       },
-    },
+    }
+    // {
+    //   id: "loslens",
+    //   name: "Lo's Lens",
+    //   image: Loslens,
+    //   company: "Lo's Lens",
+    //   tech: ["WordPress"],
+    //   description: `Designed and developed a premium WordPress portfolio for a professional pet photography business, focusing on visual storytelling and conversion optimization. Implemented a custom gallery system that showcases high-resolution imagery while maintaining optimal performance across all devices. Integrated advanced SEO strategies and user-friendly content management capabilities. Provided comprehensive client training and ongoing support, ensuring sustainable business growth through effective digital presence.`,
+    //   link: {
+    //     label: "Visit the live site",
+    //     url: "https://www.loslens.com",
+    //   },
+    // },
   ];
 
   return (
@@ -150,7 +171,8 @@ export default function About() {
                 className="btn-close absolute-close"
                 onClick={() => closeModal(proj.id)}
                 aria-label="Close"
-              ></button>
+                style={{ backgroundColor: "black" }}
+              />
 
               <div className="modal-content-wrapper">
                 <div className="modal-image-container">

@@ -12,18 +12,11 @@ export default function About() {
       {/* <div class="clip-path-about"></div> */}
       <div class="about-content">
         <p className="light-text home-text">
-          <span className="dark-text">Software Engineer</span> with 5 years
-          experience, I've collaborated with teams to craft compelling websites,
-          driving{" "}
-          <span className="dark-text">impactful business outcomes.</span> My
-          understanding of design principles, user behaviors, and the evolving
-          landscape of web technologies enables me to consistently deliver{" "}
-          <span className="dark-text">exceptional results. </span>
-          Alongside my professional experience, I'm pursuing a Bachelor of
-          Science in Computer Science, further enriching my skills and
-          knowledge. I thrive in managing multiple tasks with a{" "}
-          <span className="dark-text">proactive approach,</span> and fostering a
-          <span className="dark-text"> positive team environment.</span>
+          <span className="dark-text">Software Engineer</span> specializing in frontend and full-stack web development, with experience building scalable React applications,
+          admin portals, and API-driven dashboards.{" "}
+          <span className="dark-text">Proven track record</span> of shipping weekly production features, improving performance and developer workflows, and{" "}
+          <span className="dark-text">reducing operational friction </span>
+          by up to 25%. Currently pursuing a B.S. in Computer Science at the <span className="dark-text">University of Colorado</span>{" "}
         </p>
         {/* <p className="light-text job-title">
           Front End <span className="dark-text">Web Developer</span>
@@ -42,7 +35,7 @@ export default function About() {
           While not online, I enjoy{" "}
           <span className="dark-text">running trails</span> in the high country,
           checking out local <span className="dark-text">breweries</span>,
-          mountain biking , snowboarding, and
+          mountain biking, snowboarding, and
           <span className="dark-text"> camping</span> under the stars.
         </p>
       </div>
