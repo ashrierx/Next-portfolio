@@ -11,6 +11,8 @@ import Shadow from '../images/barterbuilds.png';
 import Dreammotions from '../images/dreammotions.png';
 import Localeyz from '../images/localeyzmain.png'
 import Macbook from '../images/macbook.png';
+import Sketch from '../images/sketch.png';
+import Headshot from '../images/Headshot.jpg';
 
 // function CursorBars() {
 //   const ref = useRef(null);
@@ -93,7 +95,7 @@ import Macbook from '../images/macbook.png';
 //           const xPos = (i - lineCount / 2) * 20 + 150; // Spread lines
 //           const dist = Math.abs(mousePos.x - xPos);
 //           const strength = Math.max(0, 100 - dist) / 100; // Pull strength
-          
+
 //           return (
 //             <motion.div
 //               key={i}
@@ -126,7 +128,7 @@ function InteractiveFooter() {
   const footerRef = useRef(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
-  
+
   const lineCount = 40;
 
   // 1. Updated Data with URLs
@@ -147,7 +149,7 @@ function InteractiveFooter() {
   };
 
   return (
-    <footer 
+    <footer
       ref={footerRef}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
@@ -158,7 +160,7 @@ function InteractiveFooter() {
       {/* Top Content: Links */}
       <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Let's talk.</h2>
-        
+
         <div className="flex justify-center gap-8 mb-20">
           {footerLinks.map((link) => (
             <motion.a
@@ -180,10 +182,10 @@ function InteractiveFooter() {
         {[...Array(lineCount)].map((_, i) => {
           const archHeight = Math.sin((i / (lineCount - 1)) * Math.PI) * 40;
           return (
-            <MagneticLine 
-              key={i} 
-              index={i} 
-              mousePos={mousePos} 
+            <MagneticLine
+              key={i}
+              index={i}
+              mousePos={mousePos}
               isHovered={isHovered}
               baseHeight={15 + archHeight}
               footerRef={footerRef}
@@ -218,7 +220,7 @@ function MagneticLine({ mousePos, isHovered, baseHeight, index, totalLines, foot
 
     const rect = footerRef.current.getBoundingClientRect();
     const lineX = (index / (totalLines - 1)) * rect.width;
-    
+
     // Distance calculation
     const dist = Math.abs(mousePos.x - lineX);
     const proximity = Math.max(0, 150 - dist) / 150; // Influence radius of 150px
@@ -226,13 +228,13 @@ function MagneticLine({ mousePos, isHovered, baseHeight, index, totalLines, foot
     // Apply physics: Tallest when cursor is over it, leaning toward cursor
     height.set(baseHeight + (proximity * 80));
     rotate.set((mousePos.x - lineX) * 0.2 * proximity);
-    
+
   }, [mousePos, isHovered]);
 
   return (
     <motion.div
-      style={{ 
-        height, 
+      style={{
+        height,
         rotate,
         originY: "100%",
         backgroundColor: `hsl(197, 75%, 52%)`,
@@ -369,12 +371,12 @@ function Navigation() {
           }}
         />
 
-        <motion.div 
+        <motion.div
           className="relative max-w-7xl mx-auto px-6 flex justify-between items-center"
-          style={{ 
-            paddingTop: navPadding, 
+          style={{
+            paddingTop: navPadding,
             paddingBottom: navPadding,
-            scale: navScale 
+            scale: navScale
           }}
         >
           <div className="flex flex-col gap-3">
@@ -596,7 +598,7 @@ function AboutSection() {
 
         <div className="grid md:grid-cols-3 gap-12">
           <motion.div
-            className="md:col-span-2 space-y-6 text-slate-500 leading-relaxed"
+            className="md:col-span-2 space-y-6 text-slate-500 leading-relaxed text-left"
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
@@ -617,7 +619,7 @@ function AboutSection() {
               <p className="text-slate-500 mb-4">Here are some technologies I've been working with:</p>
               <div className="grid grid-cols-2 gap-2 text-sm font-mono">
                 {['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'GraphQL', 'Node.js', 'Docker', 'AWS'].map((tech) => (
-                  <div key={tech} className="flex items-center justify-center gap-2">
+                  <div key={tech} className="flex items-center gap-2">
                     <span className="text-cyan-400">▹</span>
                     {tech}
                   </div>
@@ -634,11 +636,19 @@ function AboutSection() {
             whileHover={{ scale: 1.05 }}
           >
             <div className="relative z-10 rounded overflow-hidden border-2 border-cyan-400/20 group-hover:border-cyan-400 transition-colors">
-              <div className="aspect-square bg-slate-800 relative overflow-hidden">
-              {/* <InteractiveCharacter /> */}
+              <div className="aspect-square bg-slate-800 relative">
+                {/* <InteractiveCharacter /> */}
+                <img
+                  src={typeof Headshot === 'string' ? Headshot : (Headshot.src || Headshot)}
+                  alt="artist profile sketch"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="w-full h-auto object-cover mix-blend-luminosity opacity-80"
+                />
               </div>
             </div>
-            <div className="absolute inset-0 bg-cyan-400/20 rounded translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform h-[300px]" />
+            <div className="absolute inset-0 bg-cyan-400/20 rounded translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform h-[440px]" />
           </motion.div>
         </div>
       </div>
