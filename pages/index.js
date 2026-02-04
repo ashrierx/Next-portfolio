@@ -4,62 +4,242 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring } from 'framer-motion';
 import View from '../images/view.png';
-import commercetools from '../images/commercetools.png';
-import LamprosLabs from '../images/ocusell.png';
-import VantageIoTPlatform from '../images/vantageps.jpg';
+import commercetools from '../images/ct.png';
+import LamprosLabs from '../images/lampros.png';
+import VantageIoTPlatform from '../images/vantage.png';
 import Shadow from '../images/barterbuilds.png';
-import Dreammotions from '../images/Dreammotions.png';
+import Dreammotions from '../images/dreammotions.png';
+import Localeyz from '../images/localeyzmain.png'
+import Macbook from '../images/macbook.png';
 
-function CursorBars() {
-  const ref = useRef(null);
+// function CursorBars() {
+//   const ref = useRef(null);
 
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+//   const mouseX = useMotionValue(0);
+//   const mouseY = useMotionValue(0);
 
-  function handleMouseMove(e) {
-    if (!ref.current) return;
+//   function handleMouseMove(e) {
+//     if (!ref.current) return;
 
-    const rect = ref.current.getBoundingClientRect();
-    mouseX.set(e.clientX - rect.left - rect.width / 2);
-    mouseY.set(e.clientY - rect.top - rect.height / 2);
-  }
+//     const rect = ref.current.getBoundingClientRect();
+//     mouseX.set(e.clientX - rect.left - rect.width / 2);
+//     mouseY.set(e.clientY - rect.top - rect.height / 2);
+//   }
+
+//   return (
+//     <div
+//       ref={ref}
+//       onMouseMove={handleMouseMove}
+//       className="absolute inset-0 flex items-center justify-center"
+//     >
+//       <div className="flex gap-2">
+//         {Array.from({ length: 5 }).map((_, i) => {
+//           const rotate = useSpring(
+//             useTransform(mouseX, [-150, 150], [-6, 6]),
+//             {
+//               stiffness: 120,
+//               damping: 20,
+//               mass: 1 + i * 0.15,
+//             }
+//           );
+
+//           const y = useSpring(
+//             useTransform(mouseY, [-150, 150], [-6, 6]),
+//             {
+//               stiffness: 120,
+//               damping: 20,
+//               mass: 1 + i * 0.15,
+//             }
+//           );
+
+//           return (
+//             <motion.div
+//               key={i}
+//               style={{ rotate, y }}
+//               className="w-1 h-12 bg-cyan-400/80 rounded-full origin-bottom"
+//             />
+//           );
+//         })}
+//       </div>
+//     </div>
+//   );
+// }
+
+
+// --- INTERACTIVE ABOUT ME CHARACTER ---
+// function InteractiveCharacter() {
+//   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+//   const containerRef = useRef(null);
+//   const lineCount = 12;
+
+//   const handleMouseMove = (e) => {
+//     if (!containerRef.current) return;
+//     const rect = containerRef.current.getBoundingClientRect();
+//     setMousePos({
+//       x: e.clientX - rect.left,
+//       y: e.clientY - rect.top,
+//     });
+//   };
+
+//   return (
+//     <div 
+//       ref={containerRef}
+//       onMouseMove={handleMouseMove}
+//       className="relative w-full h-[300px] flex items-end justify-center overflow-hidden bg-slate-800/50 rounded-lg"
+//     >
+//       {/* The "Rainbow" Lines */}
+//       <div className="absolute inset-0 flex justify-center items-end pb-10 gap-2">
+//         {[...Array(lineCount)].map((_, i) => {
+//           const xPos = (i - lineCount / 2) * 20 + 150; // Spread lines
+//           const dist = Math.abs(mousePos.x - xPos);
+//           const strength = Math.max(0, 100 - dist) / 100; // Pull strength
+          
+//           return (
+//             <motion.div
+//               key={i}
+//               className="w-1 rounded-full"
+//               animate={{
+//                 height: 60 + (strength * 80),
+//                 backgroundColor: `hsl(${200 + (i * 10)}, 80%, ${60 + (strength * 20)}%)`,
+//                 rotate: (mousePos.x - xPos) * 0.1 * strength
+//               }}
+//               transition={{ type: "spring", stiffness: 300, damping: 20 }}
+//               style={{ originY: "bottom" }}
+//             />
+//           );
+//         })}
+//       </div>
+
+//       {/* The Character (Placeholder Image) */}
+//       <div className="relative z-10 mb-2">
+//          <img 
+//             src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix&clothing=hoodie&eyebrows=default" 
+//             alt="Sitting character"
+//             className="w-24 h-24 drop-shadow-2xl"
+//          />
+//       </div>
+//     </div>
+//   );
+// }
+
+function InteractiveFooter() {
+  const footerRef = useRef(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+  
+  const lineCount = 40;
+
+  // 1. Updated Data with URLs
+  const footerLinks = [
+    { name: 'GitHub', url: 'https://github.com/ashrierx' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/ashley-m-judah/' },
+    { name: 'Email', url: 'mailto:ajudah2@pm.me' },
+    { name: 'Resume', url: 'https://drive.proton.me/urls/V87WXC8JHM#a4YsNngqQQM9' }
+  ];
+
+  const handleMouseMove = (e) => {
+    if (!footerRef.current) return;
+    const rect = footerRef.current.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
 
   return (
-    <div
-      ref={ref}
+    <footer 
+      ref={footerRef}
       onMouseMove={handleMouseMove}
-      className="absolute inset-0 flex items-center justify-center"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative mt-8 bg-slate-900 pt-20 pb-12 overflow-hidden"
+      id="contact"
     >
-      <div className="flex gap-2">
-        {Array.from({ length: 5 }).map((_, i) => {
-          const rotate = useSpring(
-            useTransform(mouseX, [-150, 150], [-6, 6]),
-            {
-              stiffness: 120,
-              damping: 20,
-              mass: 1 + i * 0.15,
-            }
-          );
+      {/* Top Content: Links */}
+      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Let's talk.</h2>
+        
+        <div className="flex justify-center gap-8 mb-20">
+          {footerLinks.map((link) => (
+            <motion.a
+              key={link.name}
+              href={link.url} // 2. Applied the URL here
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-mono text-cyan-400 hover:text-white transition-colors"
+              whileHover={{ y: -5 }}
+            >
+              {link.name}
+            </motion.a>
+          ))}
+        </div>
+      </div>
 
-          const y = useSpring(
-            useTransform(mouseY, [-150, 150], [-6, 6]),
-            {
-              stiffness: 120,
-              damping: 20,
-              mass: 1 + i * 0.15,
-            }
-          );
-
+      {/* 3. The Magnetic Lines: Positioned between Links and Copyright */}
+      <div className="relative w-full h-12 flex items-end justify-around px-4 pointer-events-none mb-10">
+        {[...Array(lineCount)].map((_, i) => {
+          const archHeight = Math.sin((i / (lineCount - 1)) * Math.PI) * 40;
           return (
-            <motion.div
-              key={i}
-              style={{ rotate, y }}
-              className="w-1 h-12 bg-cyan-400/80 rounded-full origin-bottom"
+            <MagneticLine 
+              key={i} 
+              index={i} 
+              mousePos={mousePos} 
+              isHovered={isHovered}
+              baseHeight={15 + archHeight}
+              footerRef={footerRef}
+              totalLines={lineCount}
             />
           );
         })}
       </div>
-    </div>
+
+      {/* Bottom Content: Copyright */}
+      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
+        <div className="pt-8 border-t border-slate-800 text-slate-500 text-xs font-mono uppercase tracking-widest">
+          Designed & Built by Ashley Judah © 2026
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function MagneticLine({ mousePos, isHovered, baseHeight, index, totalLines, footerRef }) {
+  // Use springs for that "weighted" physics feel
+  const springConfig = { stiffness: 150, damping: 15 };
+  const height = useSpring(baseHeight, springConfig);
+  const rotate = useSpring(0, springConfig);
+
+  useEffect(() => {
+    if (!isHovered || !footerRef.current) {
+      height.set(baseHeight);
+      rotate.set(0);
+      return;
+    }
+
+    const rect = footerRef.current.getBoundingClientRect();
+    const lineX = (index / (totalLines - 1)) * rect.width;
+    
+    // Distance calculation
+    const dist = Math.abs(mousePos.x - lineX);
+    const proximity = Math.max(0, 150 - dist) / 150; // Influence radius of 150px
+
+    // Apply physics: Tallest when cursor is over it, leaning toward cursor
+    height.set(baseHeight + (proximity * 80));
+    rotate.set((mousePos.x - lineX) * 0.2 * proximity);
+    
+  }, [mousePos, isHovered]);
+
+  return (
+    <motion.div
+      style={{ 
+        height, 
+        rotate,
+        originY: "100%",
+        backgroundColor: `hsl(197, 75%, 52%)`,
+        boxShadow: isHovered ? `0 0 15px hsl(${190 + (index * 2)}, 80%, 50%, 0.5)` : 'none'
+      }}
+      className="w-1 md:w-1.5 rounded-full transition-shadow duration-300"
+    />
   );
 }
 
@@ -86,22 +266,22 @@ export default function Portfolio() {
       />
 
       {/* Scroll progress indicator */}
-      <motion.div
+      {/* <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 origin-left z-50"
         style={{ scaleX: scrollYProgress }}
-      />
+      /> */}
 
       <div className="relative z-10 mx-4 pt-20 mb-4">
         {/* Neon blue border outline - starts above nav, ends after footer */}
         <div className="absolute inset-0 border-2 border-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.5),0_0_40px_rgba(34,211,238,0.3)] rounded-lg pointer-events-none" />
-        
+
         <div className="relative">
           <Navigation />
           <HeroSection />
           <AboutSection />
           <ExperienceSection />
           <ProjectsSection />
-          <ContactSection />
+          {/* <ContactSection /> */}
           <Footer />
         </div>
       </div>
@@ -111,149 +291,202 @@ export default function Portfolio() {
 
 function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { scrollYProgress } = useScroll();
-  
-  // Transform scroll progress to control background color transition
-  // Transition happens when scrolling past 20% of the page
-  // Dark blue at top (scrollYProgress = 0), light when scrolling (scrollYProgress > 0.2)
-  const lightBgProgress = useTransform(scrollYProgress, [0.2, 0.5], [0, 1], { clamp: true });
-  
-  // Calculate the "swish" effect - a sliding transition from left
-  const swishClipPath = useTransform(lightBgProgress, (value) => {
-    // Ease out cubic for smooth swish
+  const { scrollY } = useScroll();
+
+  // 0 when at top, 1 as soon as user scrolls ~80px
+  const scrolled = useTransform(scrollY, [0, 80], [0, 1], { clamp: true });
+
+  // Smooth the scroll value
+  const scrolledSpring = useSpring(scrolled, {
+    stiffness: 120,
+    damping: 20,
+  });
+
+  const navScale = useTransform(scrolledSpring, [0, 1], [1, 0.98]);
+  const navPadding = useTransform(scrolledSpring, [0, 1], ['1rem', '0.75rem']);
+
+  // Dark layer fades OUT when scrolling
+  const darkOpacity = useTransform(scrolledSpring, [0, 1], [1, 0]);
+
+  // Light layer fades IN when scrolling
+  const lightOpacity = useTransform(scrolledSpring, [0, 1], [0, 1]);
+
+  // Swish animation for the light background
+  const swishClipPath = useTransform(scrolledSpring, (value) => {
     const eased = 1 - Math.pow(1 - value, 3);
     const x = (1 - eased) * -100;
     return `inset(0 ${x}% 0 0)`;
   });
-  
-  // Dark opacity: starts at 1 (visible at top) and goes to 0 (hidden when scrolling)
-  const darkOpacity = useTransform(lightBgProgress, [0, 1], [1, 0], { clamp: true });
-  // Text color: starts light (for dark bg) and goes dark (for light bg) when scrolling
-  const textColor = useTransform(lightBgProgress, [0, 0.5, 1], ['rgb(241, 245, 249)', 'rgb(241, 245, 249)', 'rgb(15, 23, 42)'], { clamp: true });
-  const linkColor = useTransform(lightBgProgress, [0, 0.5, 1], ['rgb(148, 163, 184)', 'rgb(148, 163, 184)', 'rgb(51, 65, 85)'], { clamp: true });
-  const mobileBgColor = useTransform(lightBgProgress, [0, 0.5, 1], ['rgba(30, 58, 138, 0.95)', 'rgba(30, 58, 138, 0.95)', 'rgba(255, 255, 255, 0.95)'], { clamp: true });
+
+  // Logo/AJ text color: light when dark bg, dark when light bg
+  const logoColor = useTransform(
+    scrolledSpring,
+    [0, 1],
+    ['rgb(241, 245, 249)', 'rgb(15, 23, 42)']
+  );
+
+  // Link text color: slate-400 when dark bg, slate-700 when light bg
+  const linkColor = useTransform(
+    scrolledSpring,
+    [0, 1],
+    ['rgb(148, 163, 184)', 'rgb(51, 65, 85)']
+  );
+
+  // Mobile menu background
+  const mobileBgColor = useTransform(
+    scrolledSpring,
+    [0, 1],
+    ['rgba(15, 23, 42, 0.95)', 'rgba(255, 255, 255, 0.95)']
+  );
+
+  // Mobile menu border
+  const mobileBorderColor = useTransform(
+    scrolledSpring,
+    [0, 1],
+    ['rgba(148, 163, 184, 0.1)', 'rgba(226, 232, 240, 1)']
+  );
 
   return (
     <motion.nav
-      className="fixed top-0 left-0 right-0 z-40 overflow-visible"
+      className="fixed top-0 left-0 right-0 z-40 overflow-visible mx-[2px]"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="mx-4 relative">
-        {/* Dark blue background layer - visible at top */}
+      <div className="mx-6 relative">
+        {/* Dark background (default at top) - Dark Blue/Slate */}
         <motion.div
-          className="absolute inset-0 bg-blue-900/95 backdrop-blur-md border-b border-blue-800/50 rounded-t-lg"
+          className="absolute inset-0 bg-slate-900/95 backdrop-blur-md"
           style={{ opacity: darkOpacity }}
         />
-        
-        {/* Light background layer with swish effect - appears when scrolling */}
+
+        {/* Light background (revealed on scroll) - White */}
         <motion.div
           className="absolute inset-0 bg-white/95 backdrop-blur-md border-b border-slate-200 rounded-t-lg"
-          style={{ clipPath: swishClipPath }}
+          style={{
+            clipPath: swishClipPath,
+            opacity: lightOpacity,
+          }}
         />
-        
-        <div className="relative max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <div className="flex flex-col gap-3">
-          <motion.div
-            className="text-2xl font-bold tracking-tight relative z-10"
-            whileHover={{ scale: 1.05 }}
-            style={{ color: textColor }}
-          >
-            AJ
-          </motion.div>
-          
-          {/* Social icons under logo */}
-          <div className="flex gap-3 relative z-10">
-            {[
-              { icon: (
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
-              ), href: 'https://github.com/ashrierx' },
-              { icon: (
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-              ), href: 'https://www.linkedin.com/in/ashley-m-judah/' },
-              { icon: (
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              ), href: 'https://drive.proton.me/urls/V87WXC8JHM#a4YsNngqQQM9' }
-            ].map((social, i) => (
+
+        <motion.div 
+          className="relative max-w-7xl mx-auto px-6 flex justify-between items-center"
+          style={{ 
+            paddingTop: navPadding, 
+            paddingBottom: navPadding,
+            scale: navScale 
+          }}
+        >
+          <div className="flex flex-col gap-3">
+            <motion.div
+              className="text-2xl font-bold tracking-tight relative z-10"
+              whileHover={{ scale: 1.05 }}
+              style={{ color: logoColor }}
+            >
+              AJ
+            </motion.div>
+
+            {/* Social icons under logo */}
+            <div className="flex gap-3 relative z-10">
+              {[
+                {
+                  icon: (
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                  ), href: 'https://github.com/ashrierx'
+                },
+                {
+                  icon: (
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                  ), href: 'https://www.linkedin.com/in/ashley-m-judah/'
+                },
+                {
+                  icon: (
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                  ), href: 'https://drive.proton.me/urls/V87WXC8JHM#a4YsNngqQQM9'
+                }
+              ].map((social, i) => (
+                <motion.a
+                  key={i}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors"
+                  style={{ color: linkColor }}
+                  whileHover={{ color: 'rgb(34, 211, 238)' }}
+                >
+                  {social.icon}
+                </motion.a>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex gap-8 items-center relative z-10">
+            {['About', 'Experience', 'Projects', 'Contact'].map((item, i) => (
               <motion.a
-                key={i}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors"
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-sm font-medium transition-colors relative group"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
                 style={{ color: linkColor }}
-                whileHover={{ color: 'rgb(34, 211, 238)' }}
               >
-                {social.icon}
+                <span className="text-cyan-400 text-xs mr-1">0{i + 1}.</span>
+                {item}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300" />
               </motion.a>
             ))}
           </div>
-        </div>
-        
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex gap-8 items-center relative z-10">
-          {['About', 'Experience', 'Projects', 'Contact'].map((item, i) => (
-            <motion.a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="text-sm font-medium transition-colors relative group"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              style={{ color: linkColor }}
-            >
-              <span className="text-cyan-400 text-xs mr-1">0{i + 1}.</span>
-              {item}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300" />
-            </motion.a>
-          ))}
-        </div>
 
-        {/* Mobile Hamburger Button */}
-        <motion.button
-          className="md:hidden relative z-10 flex flex-col gap-1.5 p-2"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
-          style={{ color: textColor }}
-        >
-          <motion.span
-            className="w-6 h-0.5 bg-current origin-center"
-            animate={isMobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-            transition={{ duration: 0.3 }}
-          />
-          <motion.span
-            className="w-6 h-0.5 bg-current"
-            animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          />
-          <motion.span
-            className="w-6 h-0.5 bg-current origin-center"
-            animate={isMobileMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-            transition={{ duration: 0.3 }}
-          />
-        </motion.button>
-        </div>
+          {/* Mobile Hamburger Button */}
+          <motion.button
+            className="md:hidden relative z-10 flex flex-col gap-1.5 p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <motion.span
+              className="w-6 h-0.5 origin-center"
+              style={{ backgroundColor: logoColor }}
+              animate={isMobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+              transition={{ duration: 0.3 }}
+            />
+            <motion.span
+              className="w-6 h-0.5"
+              style={{ backgroundColor: logoColor }}
+              animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            />
+            <motion.span
+              className="w-6 h-0.5 origin-center"
+              style={{ backgroundColor: logoColor }}
+              animate={isMobileMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+              transition={{ duration: 0.3 }}
+            />
+          </motion.button>
+        </motion.div>
 
         {/* Mobile Menu */}
         <motion.div
-          className="md:hidden relative backdrop-blur-md border-b border-slate-800/50 rounded-b-lg"
+          className="md:hidden relative backdrop-blur-md rounded-b-lg overflow-hidden"
           initial={false}
           animate={{
             maxHeight: isMobileMenuOpen ? 300 : 0,
             opacity: isMobileMenuOpen ? 1 : 0,
           }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          style={{ 
+          style={{
             backgroundColor: mobileBgColor,
+            borderBottomWidth: '1px',
+            borderBottomStyle: 'solid',
+            borderBottomColor: mobileBorderColor,
             zIndex: 50,
-            overflow: 'hidden',
           }}
         >
           <div className="px-6 py-4 space-y-4">
@@ -292,7 +525,7 @@ function HeroSection() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="space-y-6"
         >
-          <motion.h1 
+          <motion.h1
             className="text-5xl md:text-7xl lg:text-8xl font-bold text-slate-100 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -300,24 +533,24 @@ function HeroSection() {
           >
             Ashley Judah.
           </motion.h1>
-          
-          <motion.h2 
+
+          <motion.h2
             className="text-4xl md:text-6xl lg:text-7xl font-bold text-slate-400 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            I build things for the web.
+            Software Developer.
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             className="text-lg md:text-xl text-slate-400 max-w-2xl leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
           >
-            Software engineer specializing in building exceptional digital experiences. 
-            I focus on creating accessible, secure, and 
+            I specialize in building exceptional digital experiences.
+            I focus on creating performant, secure, and
             user-friendly web applications.
           </motion.p>
 
@@ -347,7 +580,7 @@ function AboutSection() {
   const isInView = useInView(containerRef, { once: true, margin: '-100px' });
 
   return (
-    <section id="about" ref={containerRef}>
+    <section id="about" ref={containerRef} className="mx-[2px]">
       <div className="max-w-5xl mx-auto py-32 px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -369,11 +602,11 @@ function AboutSection() {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
             <p>
-            I specialize in frontend and full-stack web development, with experience building scalable React applications, admin portals, and API-driven dashboards. I have a proven track record of shipping weekly production features, improving performance and developer workflows, and reducing operational friction by up to 25%.
+              I specialize in frontend and full-stack web development, with experience building scalable React applications, admin portals, and API-driven dashboards. I have a proven track record of shipping weekly production features, improving performance and developer workflows, and reducing operational friction by up to 25%.
             </p>
             <p>
-              Currently pursuing a Bachelor of Science in Computer Science while delivering 
-              exceptional results across multiple concurrent projects. I thrive in fast-paced 
+              Currently pursuing a Bachelor of Science in Computer Science while delivering
+              exceptional results across multiple concurrent projects. I thrive in fast-paced
               environments with a proactive approach and positive team spirit.
             </p>
             <p>
@@ -384,7 +617,7 @@ function AboutSection() {
               <p className="text-slate-500 mb-4">Here are some technologies I've been working with:</p>
               <div className="grid grid-cols-2 gap-2 text-sm font-mono">
                 {['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'GraphQL', 'Node.js', 'Docker', 'AWS'].map((tech) => (
-                  <div key={tech} className="flex items-center gap-2">
+                  <div key={tech} className="flex items-center justify-center gap-2">
                     <span className="text-cyan-400">▹</span>
                     {tech}
                   </div>
@@ -401,9 +634,9 @@ function AboutSection() {
             whileHover={{ scale: 1.05 }}
           >
             <div className="relative z-10 rounded overflow-hidden border-2 border-cyan-400/20 group-hover:border-cyan-400 transition-colors">
-            <div className="aspect-square bg-slate-800 relative overflow-hidden">
-  <CursorBars />
-</div>
+              <div className="aspect-square bg-slate-800 relative overflow-hidden">
+              {/* <InteractiveCharacter /> */}
+              </div>
             </div>
             <div className="absolute inset-0 bg-cyan-400/20 rounded translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform h-[300px]" />
           </motion.div>
@@ -425,34 +658,31 @@ function ExperienceSection() {
       period: 'Sep 2024 - Aug 2025',
       description: 'Engineering, Front End Development',
       bullets: [
-        'Spearheaded development of an enterprise-grade AI data transformation platform',
-        'Built sophisticated engine converting diverse formats (PDFs, CSVs, JSON, PPTX) into searchable, AI-optimized assets',
-        'Architected solution ensuring data sovereignty and scalable performance',
-        'Enabled seamless deployment across cloud-native and on-premises infrastructures'
+        'Delivered weekly production feature releases for a React-based dashboard, improving user experience and expanding API-driven functionality',
+        'Architected and implemented an internal bug-tracking system with role-based access, increasing workflow transparency and improving team productivity by 20%',
+        'Developed and launched an admin and authorization portal using TanStack Query and token-based authentication, cutting user onboarding time by up to 50% while strengthening access security',
       ]
     },
     {
       company: 'commercetools',
-      role: 'Web Developer',
+      role: 'Web Developer - contract',
       period: 'Sep 2023 - Aug 2024',
       description: 'Systems, Web Development',
       bullets: [
-        'Led front-end development as core member of web engineering team',
-        'Collaborated with UX/UI designers to implement pixel-perfect, responsive components',
-        'Enhanced user engagement by 40% through optimized component architecture',
-        'Architected critical website infrastructure using Statamic CMS'
+        'Directed website rebrand, converting legacy code to modern CSS variables, increasing maintainability and cutting update cycles by up to 25%',
+        'Served on-call rotation with international team to diagnose and resolve site failures, collaborating with overseas security firm to ensure uptime and security',
+        'Partnered with SEO specialists to implement optimization strategies that improved site discoverability and search engine rankings',
       ]
     },
     {
-      company: 'Lampros Labs',
+      company: 'Lampros Labs - contract',
       role: 'Frontend Developer',
       period: 'Aug 2022 - Sep 2023',
       description: 'User Experience, Web Development',
       bullets: [
-        'Delivered full-stack web solutions specializing in custom WordPress development',
-        'Engineered themes and plugins increasing site performance by 30%',
-        'Led technical implementation using modern PHP patterns and JavaScript frameworks',
-        'Created high-fidelity prototypes in Adobe XD streamlining development process'
+        'Collaborated with a cross-functional team to design, develop, and deploy custom WordPress sites, utilizing themes and plugins to meet client needs',
+        'Led feature development through detailed mockups and wireframes, accelerating prototyping and shortening deployment time by 20%',
+        'Managed and optimized Google Ads campaigns across various media sizes, increasing client reach and engagement',
       ]
     },
     {
@@ -468,15 +698,14 @@ function ExperienceSection() {
       ]
     },
     {
-      company: 'First Turn Media',
+      company: 'Localeyz',
       role: 'Junior Web Developer',
       period: 'Dec 2020 - May 2022',
       description: 'Custom React site',
       bullets: [
-        'Developed custom React applications for client websites',
-        'Implemented responsive designs and interactive features',
-        'Collaborated with design team to ensure pixel-perfect implementations',
-        'Maintained and updated existing client projects'
+        'Created training videos and documentation for clients, teaching them how to build and customize Drupal components via our internal patofrm',
+        'Assisted in integrating multilingual support into client websites, implementing language translation features and ensuring global accessibility',
+        'Led a redesign and implementation of the company website using React and GraphQL, improving performance, user experience, and maintainability',
       ]
     },
     {
@@ -486,15 +715,14 @@ function ExperienceSection() {
       description: 'Instructional Staff',
       bullets: [
         'Taught coding fundamentals to students ages 8-18',
-        'Developed curriculum for beginner to advanced courses',
-        'Organized and ran coding camps and workshops',
-        'Fostered passion for technology in young learners'
+        'Led CodeWizards capstone project for 15 students, guiding development of a live website for a local nonprofit',
+        'Delivered engaging curriculum in Python, JavaScript, and Scratch, improving student outcomes and participation rates across multiple grade levels',
       ]
     }
   ];
 
   return (
-    <section id="experience" ref={containerRef} className="bg-slate-900/90 py-28 px-6 relative">
+    <section id="experience" ref={containerRef} className="bg-slate-900/90 py-28 px-6 relative mx-[2px]">
       <div className="max-w-5xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -520,11 +748,10 @@ function ExperienceSection() {
               <button
                 key={i}
                 onClick={() => setActiveTab(i)}
-                className={`px-6 py-3 text-left font-mono text-sm whitespace-nowrap transition-all relative ${
-                  activeTab === i
-                    ? 'text-cyan-400 bg-slate-800/50'
-                    : 'text-slate-400 hover:text-cyan-400 hover:bg-slate-800/30'
-                }`}
+                className={`px-6 py-3 text-left font-mono text-sm whitespace-nowrap transition-all relative ${activeTab === i
+                  ? 'text-cyan-400 bg-slate-800/50'
+                  : 'text-slate-400 hover:text-cyan-400 hover:bg-slate-800/30'
+                  }`}
               >
                 {exp.company}
                 {activeTab === i && (
@@ -552,7 +779,7 @@ function ExperienceSection() {
                   <span className="text-cyan-400"> @ {exp.company}</span>
                 </h3>
                 <p className="font-mono text-sm text-slate-400 mb-6">{exp.period}</p>
-                
+
                 <ul className="space-y-4">
                   {exp.bullets.map((bullet, j) => (
                     <li key={j} className="flex gap-3 text-slate-400">
@@ -581,14 +808,14 @@ function ProjectsSection() {
   const projects = [
     {
       title: 'View Systems',
-      description: 'Spearheaded development of an enterprise-grade AI data transformation platform that revolutionizes document processing. Built sophisticated engine converting diverse formats into searchable, AI-optimized assets with deployable conversational interfaces.',
-      tech: ['React', 'TypeScript', 'Docker', 'Tailwind'],
+      description: 'Spearheaded development of an enterprise-grade AI data transformation platform that revolutionizes document processing. Developed and launched an admin and authorization portal using TanStack Query and token-based authentication.',
+      tech: ['React', 'TypeScript', 'Docker', 'Tailwind', 'Tanstack Query'],
       image: View,
-      link: '#'
+      // link: '#'
     },
     {
       title: 'commercetools',
-      description: 'Led front-end development as core member of web engineering team. Collaborated with UX/UI designers to implement pixel-perfect, responsive components enhancing user engagement by 40%. Architected critical infrastructure using Statamic CMS.',
+      description: 'Led front-end development as core member of web engineering team. Collaborated with UX/UI designers to implement pixel-perfect, responsive components enhancing user engagement. Architected critical infrastructure using Statamic CMS.',
       tech: ['JavaScript', 'Statamic', 'HTML', 'CSS'],
       image: commercetools,
       link: 'https://commercetools.com/'
@@ -598,40 +825,40 @@ function ProjectsSection() {
       description: 'Delivered full-stack web solutions specializing in custom WordPress development for enterprise clients. Engineered themes and plugins increasing site performance while maintaining security best practices.',
       tech: ['WordPress', 'PHP', 'JavaScript', 'SCSS'],
       image: LamprosLabs,
-      link: 'https://www.ocusell.ai/'
+      link: 'https://lamproslabs.com/'
     },
     {
-      title: 'Vantage IoT Platform',
+      title: 'Vantage Kiosk Platform',
       description: 'Engineered cutting-edge IoT application for next-generation wristband technology. Implemented robust Angular architecture handling complex state management and API integrations processing millions of data points daily.',
       tech: ['Angular', 'Bootstrap', 'APIs'],
       image: VantageIoTPlatform,
-      link: '#'
+      link: 'https://www.vantage.sh/about'
     },
     {
       title: 'Localeyz',
       description: 'Architected high-performance, SEO-optimized web applications using JAMstack with React, Gatsby, and GraphQL. Championed modern development practices including atomic design and component-driven development.',
       tech: ['React', 'Gatsby', 'GraphQL', 'Tailwind'],
-      image: '/_next/static/media/local.c8a7e759.png',
+      image: Localeyz,
       link: 'https://www.localeyz.io/'
     },
     {
-      title: 'Shadow Buddy',
-      description: 'Conceptualized and developed innovative personal project showcasing end-to-end product development. Created comprehensive UI/UX designs focusing on accessibility and user-centered design principles.',
-      tech: ['React', 'Adobe XD', 'Tailwind'],
+      title: 'Barter Builds',
+      description: 'Barter Builds is a community-driven platform where development work is traded for local business services. This project served as a case study in "vibe coding", leveraging AI to accelerate the development lifecycle from schema design to final UI polish.',
+      tech: ['React', 'Tailwind', 'Typescript', 'Next.js', 'PostgreSQL'],
       image: Shadow,
-      link: 'https://xd.adobe.com/view/b9fe1da9-45f2-4499-a76d-b056ab49cf18-ecad/'
+      link: 'https://barterbuilds.com/'
     },
     {
       title: 'DreamMotions',
-      description: '',
-      tech: ['React'],
+      description: 'An AI-powered dream analysis web app. Powered by the OpenAI API and a carefully crafted prompt, DreamMotions breaks your dreams into Primary Emotions, Symbolic Interpretation, Psychological Insights, Archetypal Themes, and Practical Takeaways.Change the app theme based on your current mood, explore an analytics dashboard to uncover recurring emotions and symbols, and keep track of past dreams for personal reflection.',
+      tech: ['React', 'Typescript', 'Firebase', 'OpenAI API', 'Vite', 'Vercel'],
       image: Dreammotions,
       link: 'https://dreammotions.vercel.app/'
     }
   ];
 
   return (
-    <section id="projects" ref={sectionRef} className="py-32 px-6 relative overflow-hidden">
+    <section id="projects" ref={sectionRef} className="py-32 px-6 mx-[2px] relative overflow-hidden">
       {/* Parallax background image */}
       <motion.div
         className="absolute inset-0 z-0"
@@ -649,7 +876,7 @@ function ProjectsSection() {
         {/* Dark blue overlay */}
         <div className="absolute inset-0 bg-slate-900/70" />
       </motion.div>
-      
+
       <div className="max-w-5xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -664,7 +891,7 @@ function ProjectsSection() {
           </h2>
         </motion.div>
 
-        <div className="space-y-24">
+        <div className="space-y-16">
           {projects.map((project, i) => (
             <ProjectCard key={i} project={project} index={i} />
           ))}
@@ -675,83 +902,88 @@ function ProjectsSection() {
 }
 
 function ProjectCard({ project, index }) {
-  const cardRef = useRef(null);
-  const isInView = useInView(cardRef, { once: true, margin: '-100px' });
-
   return (
     <motion.div
-      ref={cardRef}
-      className="relative group"
-      initial={{ opacity: 0, y: 80, scale: 0.95 }}
-      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-      transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
-      whileHover={{ y: -5 }}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.7, delay: index * 0.05 }}
+      whileHover={{ scale: 1.02, y: -4 }}
+      className="
+        group
+        grid grid-cols-1 md:grid-cols-4
+        overflow-hidden
+        rounded-xl
+        border border-cyan-400/20
+        bg-slate-900/60
+        backdrop-blur
+      "
     >
-      <div className="grid md:grid-cols-12 gap-6 items-center">
-        {/* Content - Left side on desktop */}
-        <div className="md:col-span-7 relative z-10">
-          <div className="bg-slate-800/90 p-6 md:p-8 rounded-lg shadow-xl">
-            <p className="text-cyan-400 font-mono text-sm mb-2">Featured Project</p>
-            <h3 className="text-2xl md:text-3xl font-bold text-slate-100 mb-4 group-hover:text-cyan-400 transition-colors">
+      {/* IMAGE — 1/4 */}
+      <div className="relative md:col-span-1 order-1 md:order-2 bg-slate-800 flex items-center justify-center p-4">
+        <motion.div
+          whileHover={{ y: -6 }}
+          transition={{ type: "spring", stiffness: 200, damping: 18 }}
+          className="relative w-full max-w-[220px]"
+        >
+          {/* Project image inside laptop */}
+          <div className="absolute top-[7%] left-[11%] w-[78%] h-[78%] overflow-hidden rounded-sm z-10">
+            <img
+              src={typeof project.image === 'string' ? project.image : project.image.src || project.image}
+              alt={project.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Macbook frame */}
+          <img
+            src={typeof Macbook === 'string' ? Macbook : Macbook.src || Macbook}
+            alt="MacBook mockup"
+            className="relative z-20 w-full"
+          />
+
+          {/* Glow */}
+          <div className="absolute inset-0 bg-cyan-400/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+        </motion.div>
+      </div>
+
+      {/* TEXT — 3/4 */}
+      <div className="md:col-span-3 order-2 md:order-1 p-8 bg-slate-900 text-slate-200">
+        <div className="flex flex-col h-full justify-between">
+          <div>
+            <h3 className="text-2xl font-semibold text-slate-100 mb-4">
               {project.title}
             </h3>
-            {project.description && (
-              <p className="text-slate-400 leading-relaxed mb-6">
-                {project.description}
-              </p>
-            )}
-            <div className="flex flex-wrap gap-3 mb-6">
+
+            <p className="text-slate-400 leading-relaxed mb-6">
+              {project.description}
+            </p>
+
+            <ul className="flex flex-wrap gap-3 text-sm font-mono">
               {project.tech.map((tech) => (
-                <span
+                <li
                   key={tech}
-                  className="font-mono text-sm text-slate-400 hover:text-cyan-400 transition-colors"
+                  className="text-cyan-400 bg-cyan-400/10 px-3 py-1 rounded"
                 >
                   {tech}
-                </span>
+                </li>
               ))}
-            </div>
-            <div className="flex gap-4 items-center">
-              {project.link !== '#' && (
-                <motion.a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-400 hover:text-cyan-400 transition-colors flex items-center gap-2 font-mono text-sm"
-                  whileHover={{ scale: 1.05, x: 5 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <span>Visit Site</span>
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </motion.a>
-              )}
-            </div>
+            </ul>
           </div>
-        </div>
 
-        {/* Image - Right side on desktop, top on mobile */}
-        <motion.div 
-          className="md:col-span-5 order-first md:order-last"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.8, delay: (index * 0.1) + 0.2, ease: "easeOut" }}
-        >
-          <motion.div 
-            className="relative rounded-lg overflow-hidden group-hover:shadow-2xl transition-shadow"
-            whileHover={{ scale: 1.02 }}
-          >
-            <div className="relative bg-slate-800 rounded-lg overflow-hidden">
-              <motion.img
-                src={typeof project.image === 'string' ? project.image : project.image.src || project.image}
-                alt={project.title}
-                className="w-full h-auto object-contain rounded-lg opacity-90 group-hover:opacity-100 transition-opacity duration-300"
-                whileHover={{ scale: 1.05 }}
-              />
-              <div className="absolute inset-0 bg-cyan-400/10 group-hover:bg-transparent transition-colors rounded-lg pointer-events-none" />
+          {project.link && (
+            <div className="pt-6">
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors"
+              >
+                View Project →
+              </a>
             </div>
-          </motion.div>
-        </motion.div>
+          )}
+        </div>
       </div>
     </motion.div>
   );
@@ -762,14 +994,14 @@ function ContactSection() {
   const isInView = useInView(containerRef, { once: true, margin: '-100px' });
 
   return (
-    <section id="contact" ref={containerRef} className="py-32 px-6">
+    <section id="" ref={containerRef} className="py-32 px-6 mx-[2px]">
       <div className="max-w-2xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <motion.div 
+          <motion.div
             className="flex items-center justify-center gap-4 mb-12"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -781,16 +1013,16 @@ function ContactSection() {
             </h2>
             <span className="h-px w-20 md:w-32 bg-slate-400 hidden md:block" />
           </motion.div>
-          <motion.p 
+          <motion.p
             className="text-slate-400 text-lg leading-relaxed mb-12 max-w-xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            I'm currently looking for new opportunities. Whether you have a question or 
+            I'm currently looking for new opportunities. Whether you have a question or
             just want to say hi, my inbox is always open. I look forward to chatting!
           </motion.p>
-          
+
           <motion.a
             href="mailto:ashley@example.com"
             className="inline-block px-8 py-4 border-2 border-cyan-400 text-cyan-400 rounded font-mono text-sm hover:bg-cyan-400/10 transition-all"
@@ -810,30 +1042,31 @@ function ContactSection() {
 
 function Footer() {
   return (
-    <footer className="py-12 px-6 text-center">
-      <div className="flex flex-col items-center gap-6">
-        <div className="flex gap-6 md:hidden">
-          {[
-            { icon: 'GitHub', href: 'https://github.com/AshleyHart12' },
-            { icon: 'LinkedIn', href: 'https://www.linkedin.com/in/ashley-m-hart/' },
-            { icon: 'Resume', href: 'https://docs.google.com/document/d/1WFSjgsH9kyKmPK_GQXvxYw8akqwelAJS' }
-          ].map((link) => (
-            <a
-              key={link.icon}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-slate-400 hover:text-cyan-400 transition-colors text-sm"
-            >
-              {link.icon}
-            </a>
-          ))}
-        </div>
-        <p className="text-slate-500 font-mono text-sm">
-          Built with Next.js and TailwindCSS
-        </p>
-      </div>
-    </footer>
+    <InteractiveFooter />
+    // <footer className="py-12 px-6 text-center">
+    //   <div className="flex flex-col items-center gap-6">
+    //     <div className="flex gap-6 md:hidden">
+    //       {[
+    //         { icon: 'GitHub', href: 'https://github.com/AshleyHart12' },
+    //         { icon: 'LinkedIn', href: 'https://www.linkedin.com/in/ashley-m-hart/' },
+    //         { icon: 'Resume', href: 'https://docs.google.com/document/d/1WFSjgsH9kyKmPK_GQXvxYw8akqwelAJS' }
+    //       ].map((link) => (
+    //         <a
+    //           key={link.icon}
+    //           href={link.href}
+    //           target="_blank"
+    //           rel="noopener noreferrer"
+    //           className="text-slate-400 hover:text-cyan-400 transition-colors text-sm"
+    //         >
+    //           {link.icon}
+    //         </a>
+    //       ))}
+    //     </div>
+    //     <p className="text-slate-500 font-mono text-sm">
+    //       Built with Next.js and TailwindCSS
+    //     </p>
+    //   </div>
+    // </footer>
   );
 }
 
