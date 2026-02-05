@@ -6,7 +6,7 @@ import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring }
 import View from '../images/view.png';
 import commercetools from '../images/ct.png';
 import LamprosLabs from '../images/lampros.png';
-import VantageIoTPlatform from '../images/vantage.png';
+import VantageIoTPlatform from '../images/Vantage.png';
 import Shadow from '../images/barterbuilds.png';
 import Dreammotions from '../images/dreammotions.png';
 import Localeyz from '../images/localeyzmain.png'
