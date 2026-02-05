@@ -436,8 +436,8 @@ function ExperienceSection() {
       description: 'Engineering, Front End Development',
       bullets: [
         'Delivered weekly production feature releases for a React-based dashboard, improving user experience and expanding API-driven functionality',
-        'Architected and implemented an internal bug-tracking system with role-based access, increasing workflow transparency and improving team productivity by 20%',
-        'Developed and launched an admin and authorization portal using TanStack Query and token-based authentication, cutting user onboarding time by up to 50% while strengthening access security',
+        'Architected and implemented an internal bug-tracking system with role-based access, increasing workflow transparency and improving team productivity',
+        'Developed and launched an admin and authorization portal using TanStack Query and token-based authentication, cutting user onboarding time while strengthening access security',
       ]
     },
     {
@@ -446,7 +446,7 @@ function ExperienceSection() {
       period: 'Sep 2023 - Aug 2024',
       description: 'Systems, Web Development',
       bullets: [
-        'Directed website rebrand, converting legacy code to modern CSS variables, increasing maintainability and cutting update cycles by up to 25%',
+        'Directed website rebrand, converting legacy code to modern CSS variables, increasing maintainability and cutting update cycles',
         'Served on-call rotation with international team to diagnose and resolve site failures, collaborating with overseas security firm to ensure uptime and security',
         'Partnered with SEO specialists to implement optimization strategies that improved site discoverability and search engine rankings',
       ]
@@ -458,7 +458,7 @@ function ExperienceSection() {
       description: 'User Experience, Web Development',
       bullets: [
         'Collaborated with a cross-functional team to design, develop, and deploy custom WordPress sites, utilizing themes and plugins to meet client needs',
-        'Led feature development through detailed mockups and wireframes, accelerating prototyping and shortening deployment time by 20%',
+        'Led feature development through detailed mockups and wireframes, accelerating prototyping and shortening deployment time',
         'Managed and optimized Google Ads campaigns across various media sizes, increasing client reach and engagement',
       ]
     },
