@@ -11,243 +11,10 @@ import Shadow from '../images/barterbuilds.png';
 import Dreammotions from '../images/dreammotions.png';
 import Localeyz from '../images/localeyzmain.png'
 import Macbook from '../images/macbook.png';
-import Sketch from '../images/sketch.png';
 import Headshot from '../images/Headshot.jpg';
-
-// function CursorBars() {
-//   const ref = useRef(null);
-
-//   const mouseX = useMotionValue(0);
-//   const mouseY = useMotionValue(0);
-
-//   function handleMouseMove(e) {
-//     if (!ref.current) return;
-
-//     const rect = ref.current.getBoundingClientRect();
-//     mouseX.set(e.clientX - rect.left - rect.width / 2);
-//     mouseY.set(e.clientY - rect.top - rect.height / 2);
-//   }
-
-//   return (
-//     <div
-//       ref={ref}
-//       onMouseMove={handleMouseMove}
-//       className="absolute inset-0 flex items-center justify-center"
-//     >
-//       <div className="flex gap-2">
-//         {Array.from({ length: 5 }).map((_, i) => {
-//           const rotate = useSpring(
-//             useTransform(mouseX, [-150, 150], [-6, 6]),
-//             {
-//               stiffness: 120,
-//               damping: 20,
-//               mass: 1 + i * 0.15,
-//             }
-//           );
-
-//           const y = useSpring(
-//             useTransform(mouseY, [-150, 150], [-6, 6]),
-//             {
-//               stiffness: 120,
-//               damping: 20,
-//               mass: 1 + i * 0.15,
-//             }
-//           );
-
-//           return (
-//             <motion.div
-//               key={i}
-//               style={{ rotate, y }}
-//               className="w-1 h-12 bg-cyan-400/80 rounded-full origin-bottom"
-//             />
-//           );
-//         })}
-//       </div>
-//     </div>
-//   );
-// }
-
-
-// --- INTERACTIVE ABOUT ME CHARACTER ---
-// function InteractiveCharacter() {
-//   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-//   const containerRef = useRef(null);
-//   const lineCount = 12;
-
-//   const handleMouseMove = (e) => {
-//     if (!containerRef.current) return;
-//     const rect = containerRef.current.getBoundingClientRect();
-//     setMousePos({
-//       x: e.clientX - rect.left,
-//       y: e.clientY - rect.top,
-//     });
-//   };
-
-//   return (
-//     <div 
-//       ref={containerRef}
-//       onMouseMove={handleMouseMove}
-//       className="relative w-full h-[300px] flex items-end justify-center overflow-hidden bg-slate-800/50 rounded-lg"
-//     >
-//       {/* The "Rainbow" Lines */}
-//       <div className="absolute inset-0 flex justify-center items-end pb-10 gap-2">
-//         {[...Array(lineCount)].map((_, i) => {
-//           const xPos = (i - lineCount / 2) * 20 + 150; // Spread lines
-//           const dist = Math.abs(mousePos.x - xPos);
-//           const strength = Math.max(0, 100 - dist) / 100; // Pull strength
-
-//           return (
-//             <motion.div
-//               key={i}
-//               className="w-1 rounded-full"
-//               animate={{
-//                 height: 60 + (strength * 80),
-//                 backgroundColor: `hsl(${200 + (i * 10)}, 80%, ${60 + (strength * 20)}%)`,
-//                 rotate: (mousePos.x - xPos) * 0.1 * strength
-//               }}
-//               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-//               style={{ originY: "bottom" }}
-//             />
-//           );
-//         })}
-//       </div>
-
-//       {/* The Character (Placeholder Image) */}
-//       <div className="relative z-10 mb-2">
-//          <img 
-//             src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix&clothing=hoodie&eyebrows=default" 
-//             alt="Sitting character"
-//             className="w-24 h-24 drop-shadow-2xl"
-//          />
-//       </div>
-//     </div>
-//   );
-// }
-
-function InteractiveFooter() {
-  const footerRef = useRef(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
-
-  const lineCount = 40;
-
-  // 1. Updated Data with URLs
-  const footerLinks = [
-    { name: 'GitHub', url: 'https://github.com/ashrierx' },
-    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/ashley-m-judah/' },
-    { name: 'Email', url: 'mailto:ajudah2@pm.me' },
-    { name: 'Resume', url: 'https://drive.proton.me/urls/V87WXC8JHM#a4YsNngqQQM9' }
-  ];
-
-  const handleMouseMove = (e) => {
-    if (!footerRef.current) return;
-    const rect = footerRef.current.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
-
-  return (
-    <footer
-      ref={footerRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="relative mt-8 bg-slate-900 pt-20 pb-12 overflow-hidden"
-      id="contact"
-    >
-      {/* Top Content: Links */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Let's talk.</h2>
-
-        <div className="flex justify-center gap-8 mb-20">
-          {footerLinks.map((link) => (
-            <motion.a
-              key={link.name}
-              href={link.url} // 2. Applied the URL here
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-mono text-cyan-400 hover:text-white transition-colors"
-              whileHover={{ y: -5 }}
-            >
-              {link.name}
-            </motion.a>
-          ))}
-        </div>
-      </div>
-
-      {/* 3. The Magnetic Lines: Positioned between Links and Copyright */}
-      <div className="relative w-full h-12 flex items-end justify-around px-4 pointer-events-none mb-10">
-        {[...Array(lineCount)].map((_, i) => {
-          const archHeight = Math.sin((i / (lineCount - 1)) * Math.PI) * 40;
-          return (
-            <MagneticLine
-              key={i}
-              index={i}
-              mousePos={mousePos}
-              isHovered={isHovered}
-              baseHeight={15 + archHeight}
-              footerRef={footerRef}
-              totalLines={lineCount}
-            />
-          );
-        })}
-      </div>
-
-      {/* Bottom Content: Copyright */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
-        <div className="pt-8 border-t border-slate-800 text-slate-500 text-xs font-mono uppercase tracking-widest">
-          Designed & Built by Ashley Judah © 2026
-        </div>
-      </div>
-    </footer>
-  );
-}
-
-function MagneticLine({ mousePos, isHovered, baseHeight, index, totalLines, footerRef }) {
-  // Use springs for that "weighted" physics feel
-  const springConfig = { stiffness: 150, damping: 15 };
-  const height = useSpring(baseHeight, springConfig);
-  const rotate = useSpring(0, springConfig);
-
-  useEffect(() => {
-    if (!isHovered || !footerRef.current) {
-      height.set(baseHeight);
-      rotate.set(0);
-      return;
-    }
-
-    const rect = footerRef.current.getBoundingClientRect();
-    const lineX = (index / (totalLines - 1)) * rect.width;
-
-    // Distance calculation
-    const dist = Math.abs(mousePos.x - lineX);
-    const proximity = Math.max(0, 150 - dist) / 150; // Influence radius of 150px
-
-    // Apply physics: Tallest when cursor is over it, leaning toward cursor
-    height.set(baseHeight + (proximity * 80));
-    rotate.set((mousePos.x - lineX) * 0.2 * proximity);
-
-  }, [mousePos, isHovered]);
-
-  return (
-    <motion.div
-      style={{
-        height,
-        rotate,
-        originY: "100%",
-        backgroundColor: `hsl(197, 75%, 52%)`,
-        boxShadow: isHovered ? `0 0 15px hsl(${190 + (index * 2)}, 80%, 50%, 0.5)` : 'none'
-      }}
-      className="w-1 md:w-1.5 rounded-full transition-shadow duration-300"
-    />
-  );
-}
 
 export default function Portfolio() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -296,12 +63,12 @@ function Navigation() {
   const { scrollY } = useScroll();
 
   // 0 when at top, 1 as soon as user scrolls ~80px
-  const scrolled = useTransform(scrollY, [0, 80], [0, 1], { clamp: true });
+  const scrolled = useTransform(scrollY, [0, 600, 800], [0, 0, 1]);
 
   // Smooth the scroll value
   const scrolledSpring = useSpring(scrolled, {
-    stiffness: 120,
-    damping: 20,
+    stiffness: 100,
+    damping: 30,
   });
 
   const navScale = useTransform(scrolledSpring, [0, 1], [1, 0.98]);
@@ -542,7 +309,7 @@ function HeroSection() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            Software Developer.
+            Software Engineer.
           </motion.h2>
 
           <motion.p
@@ -604,7 +371,7 @@ function AboutSection() {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
             <p>
-              I specialize in frontend and full-stack web development, with experience building scalable React applications, admin portals, and API-driven dashboards. I have a proven track record of shipping weekly production features, improving performance and developer workflows, and reducing operational friction by up to 25%.
+              I specialize in frontend and full-stack web development, with experience building scalable React applications, admin portals, and API-driven dashboards. I have a proven track record of shipping weekly production features, improving performance and developer workflows, and reducing operational friction.
             </p>
             <p>
               Currently pursuing a Bachelor of Science in Computer Science while delivering
@@ -685,8 +452,8 @@ function ExperienceSection() {
       ]
     },
     {
-      company: 'Lampros Labs - contract',
-      role: 'Frontend Developer',
+      company: 'Lampros Labs',
+      role: 'Frontend Developer - contract',
       period: 'Aug 2022 - Sep 2023',
       description: 'User Experience, Web Development',
       bullets: [
@@ -1050,6 +817,133 @@ function ContactSection() {
   );
 }
 
+function InteractiveFooter() {
+  const footerRef = useRef(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const lineCount = 40;
+
+  // 1. Updated Data with URLs
+  const footerLinks = [
+    { name: 'GitHub', url: 'https://github.com/ashrierx' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/ashley-m-judah/' },
+    { name: 'Email', url: 'mailto:ajudah2@pm.me' },
+    { name: 'Resume', url: 'https://drive.proton.me/urls/V87WXC8JHM#a4YsNngqQQM9' }
+  ];
+
+  const handleMouseMove = (e) => {
+    if (!footerRef.current) return;
+    const rect = footerRef.current.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
+  return (
+    <footer
+      ref={footerRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative mt-8 mx-[2px] bg-slate-900 pt-20 pb-12 overflow-hidden border-b-2 border-cyan-400 rounded-lg"
+      id="contact"
+    >
+      {/* Top Content: Links */}
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 flex items-center gap-4">
+            <span className="text-cyan-400 font-mono text-xl md:text-2xl">04.</span>
+            Let's Talk
+            <span className="h-px bg-slate-700 flex-1 ml-4 hidden md:block" />
+          </h2>
+
+
+        <div className="flex justify-center gap-8 mb-20">
+          {footerLinks.map((link) => (
+            <motion.a
+              key={link.name}
+              href={link.url} // 2. Applied the URL here
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-mono text-cyan-400 hover:text-white transition-colors"
+              whileHover={{ y: -5 }}
+            >
+              {link.name}
+            </motion.a>
+          ))}
+        </div>
+      </div>
+
+      {/* 3. The Magnetic Lines: Positioned between Links and Copyright */}
+      <div className="relative w-full h-12 flex items-end justify-around px-4 pointer-events-none mb-10">
+        {[...Array(lineCount)].map((_, i) => {
+          const archHeight = Math.sin((i / (lineCount - 1)) * Math.PI) * 40;
+          return (
+            <MagneticLine
+              key={i}
+              index={i}
+              mousePos={mousePos}
+              isHovered={isHovered}
+              baseHeight={15 + archHeight}
+              footerRef={footerRef}
+              totalLines={lineCount}
+            />
+          );
+        })}
+      </div>
+
+      {/* Bottom Content: Copyright */}
+      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
+        <div className="pt-8 border-t border-slate-800 text-slate-500 text-xs font-mono uppercase tracking-widest">
+          Designed & Built by Ashley Judah © 2026
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function MagneticLine({ mousePos, isHovered, baseHeight, index, totalLines, footerRef }) {
+  // Use springs for that "weighted" physics feel
+  const springConfig = { stiffness: 150, damping: 15 };
+  const height = useSpring(baseHeight, springConfig);
+  const rotate = useSpring(0, springConfig);
+
+  useEffect(() => {
+    if (!isHovered || !footerRef.current) {
+      height.set(baseHeight);
+      rotate.set(0);
+      return;
+    }
+
+    const rect = footerRef.current.getBoundingClientRect();
+    const lineX = (index / (totalLines - 1)) * rect.width;
+
+    // Distance calculation
+    const dist = Math.abs(mousePos.x - lineX);
+    const proximity = Math.max(0, 150 - dist) / 150; // Influence radius of 150px
+
+    // Apply physics: Tallest when cursor is over it, leaning toward cursor
+    height.set(baseHeight + (proximity * 80));
+    rotate.set((mousePos.x - lineX) * 0.2 * proximity);
+
+  }, [mousePos, isHovered]);
+
+  return (
+    <motion.div
+      style={{
+        height,
+        rotate,
+        originY: "100%",
+        backgroundColor: `hsl(197, 75%, 52%)`,
+        boxShadow: isHovered ? `0 0 15px hsl(${190 + (index * 2)}, 80%, 50%, 0.5)` : 'none'
+      }}
+      className="w-1 md:w-1.5 rounded-full transition-shadow duration-300"
+    />
+  );
+}
+
 function Footer() {
   return (
     <InteractiveFooter />
@@ -1079,50 +973,3 @@ function Footer() {
     // </footer>
   );
 }
-
-// import {useState, useEffect} from 'react';
-// import Head from 'next/head'
-// // import Footer from '@components/Footer'
-// // import Image from 'next/image'
-// import Contact from '../components/contact'
-// import Experience from '../components/experience'
-// import Projects from '../components/projects'
-// import Navbar from '@components/Navbar'
-// import About from '../components/About'
-// import Typewriter from 'typewriter-effect';
-
-// export default function Home() {
-//   // const [pageTitle, setPageTitle] = useState('Ashley Hart Portfolio')
-//   // useEffect(() => {
-//   //   document.title = pageTitle;
-//   // }, [pageTitle])
-//   return (
-//     <div className="container-fluid">
-//       <Head>
-//         <title>Ashley Judah</title>
-//       </Head>
-//         <Navbar />
-//         <div className="firstImg">
-//           <div className='caption'>
-//           <Typewriter
-//                     onInit={(typewriter) => {
-//                     typewriter.typeString('ASHLEY JUDAH')
-//                         .pauseFor(2500)
-//                         .start();
-//                     }}
-//                 />
-//             {/* <span className='border'>ASHLEY HART</span> */}
-//           </div>
-//         </div>
-//         <About id="about" title="About" />
-//         {/* <div className='secondImg'></div> */}
-//         <Experience  />
-//         {/* <div className='thirdImg'></div> */}
-//         <Projects />
-//         {/* <div className='fourthImg'></div> */}
-//         <Contact  />
-//         {/* <div className='fourthImg'></div> */}
-//         {/* <Footer /> */}
-//     </div>
-//   )
-// }
