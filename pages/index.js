@@ -131,7 +131,7 @@ function Navigation() {
 
         {/* Light background (revealed on scroll) - White */}
         <motion.div
-          className="absolute inset-0 bg-white/95 backdrop-blur-md border-b border-slate-200 rounded-t-lg"
+          className="absolute inset-0 bg-red/95 backdrop-blur-md border-b border-slate-200 rounded-t-lg"
           style={{
             clipPath: swishClipPath,
             opacity: lightOpacity,
@@ -371,7 +371,7 @@ function AboutSection() {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
             <p>
-              I specialize in frontend and full-stack web development, with experience building scalable React applications, admin portals, and API-driven dashboards. I have a proven track record of shipping weekly production features, improving performance and developer workflows, and reducing operational friction.
+            I build web applications that people actually enjoy using. My focus is on creating responsive, scalable experiences, whether that's streamlining workflows, building interactive interfaces, or connecting everything through clean APIs
             </p>
             <p>
               Currently pursuing a Bachelor of Science in Computer Science while delivering
@@ -853,11 +853,11 @@ function InteractiveFooter() {
       {/* Top Content: Links */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
 
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 flex items-center gap-4">
-            <span className="text-cyan-400 font-mono text-xl md:text-2xl">04.</span>
-            Let's Talk
-            <span className="h-px bg-slate-700 flex-1 ml-4 hidden md:block" />
-          </h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 flex items-center gap-4">
+          <span className="text-cyan-400 font-mono text-xl md:text-2xl">04.</span>
+          Let's Talk
+          <span className="h-px bg-slate-700 flex-1 ml-4 hidden md:block" />
+        </h2>
 
 
         <div className="flex justify-center gap-8 mb-20">
